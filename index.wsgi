@@ -5,6 +5,7 @@ from blog import PageNotFoundHandler
 from blog import urls as blogurls
 from admin import urls as adminurls
 from task import urls as taskurls
+from install import urls as installurls
 settings = { 
     'debug': False,
     'gzip': True,
@@ -16,6 +17,6 @@ tornado.web.ErrorHandler = PageNotFoundHandler
 
 
 error_url = [(r".*",PageNotFoundHandler)]
-app = tornado.wsgi.WSGIApplication(blogurls+adminurls+taskurls+error_url, **settings)
+app = tornado.wsgi.WSGIApplication(blogurls+adminurls+taskurls+installurls+error_url, **settings)
 
 application = sae.create_wsgi_app(app)
