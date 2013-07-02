@@ -158,7 +158,7 @@ def cacheData(key_pattern, expire=3600):
             key = key_pattern
             
             if isinstance(param,object) and defaults :
-                #print 'a is %s,kw is %s, _key is %s,_values is %s' % (a,kw,arg_names,defaults)
+                
                 try:
                     _key = arg_names[1:]
                     _values = a[1:]+defaults
@@ -172,18 +172,17 @@ def cacheData(key_pattern, expire=3600):
             for k,v in kw.items():
                 key = key.replace('{'+str(k)+'}',str(v))
 
-            #print 'params is %s,key_pattern is %s,the key is %s,arg_names is %s,a is %s,kw is %s,defaults is %s' % (param,key_pattern,key,arg_names,a,kw,defaults)
             val = cache.get(key)
             if val is None:
-                #print '%s is not cached!!!!!' % key
+               
                 val = f(*a, **kw)
                 if val is None:
                     pass
                 else:
                     cache.add(key,val,time = expire)
-                    #print 'add key %s OK!' % key
+                   
             else:
-                print '%s is cached...' % key
+                #print '%s is cached...' % key
                 pass                
             return val
         return _
