@@ -17,7 +17,7 @@ libraries:
 cron:
 - description: cron comment
   url: /task/?act=comment
-  schedule: every 5 mins
+  schedule: every 1 hour, offset 0
 - description: cron tag
   url: /task/?act=tag
-  schedule: every 5 mins
+  schedule: every 1 hour, offset 0
