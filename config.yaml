@@ -1,0 +1,23 @@
+---
+name: yibinim
+version: 2
+
+handle:
+- expire: if(path ~ "(.*)\.(js|css|jpg|png|gif|ico)") time 31536000
+- compress: if(out_header["Content-Length"] >= 1240) compress
+#- hostaccess: if(path ~ "/task/") allow "10.0.0.0/8"
+
+
+
+
+libraries:
+- name: misaka
+  version: "1.0.2"
+
+cron:
+- description: cron comment
+  url: /task/?act=comment
+  schedule: every 5 mins
+- description: cron tag
+  url: /task/?act=tag
+  schedule: every 5 mins

@@ -1,0 +1,40 @@
+{% extends "_admin_base.html" %}
+{%block body%}
+
+<form action="" method="POST">
+
+
+
+
+        <table class="lst" style="width:80%">
+            <tr>
+                <td>站点名称:</td><td><input type="text" name="title" class="text" placeholder="请输入站点名称" value="{{config.title|e}}" /></td>
+            </tr>
+            <tr>
+                <td>站点子标题:</td><td><input type="text" name="subtitle" class="text" placeholder="请输入站点子名称" value="{{config.subtitle|e}}"/></td>
+            </tr>
+
+            <tr>
+                <td>每页文章数:</td><td><input type="text" name="pagesize" class="text" placeholder="请输入数字" value="{{config.pagesize}}"/></td>
+            </tr>
+
+            <tr>
+                <td>是否开启评论:</td><td><label><input type="radio" name="enablecomment" value="0" {%if config.enablecomment=='0'%}checked="checked"{%endif%} />禁止评论</label>,<label><input type="radio" name="enablecomment" value="1" {%if config.enablecomment=='1'%}checked="checked"{%endif%}/>开启评论</label></td>
+            </tr>
+            <tr>
+                <td>是否关闭站点:</td><td><label><input type="radio" name="isclose" value="0" {%if config.isclose=='0'%}checked="checked"{%endif%}/>开启</label>,<label><input type="radio" name="isclose" value="1" {%if config.isclose=='1'%}checked="checked"{%endif%}/>关闭</label></td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2">
+                   <input type="submit"  value="提交" class="button"/>
+                </td>
+            </tr>
+        </table>
+
+
+
+</form>
+
+{%endblock%}
