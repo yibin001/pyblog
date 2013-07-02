@@ -16,6 +16,8 @@
 
 
 
+请将**setting_sample.py**重命名为**setting.py**
+
 Demo:
 
 <http://yibin.im>
