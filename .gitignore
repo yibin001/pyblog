@@ -1,0 +1,10 @@
+*.log
+*.pot
+*.pyc
+test.py
+settings.py
+*.svn
+entries
+text-base*
+all-*
+
