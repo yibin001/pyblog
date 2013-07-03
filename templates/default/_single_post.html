@@ -18,7 +18,7 @@
                 </article>
 				{%if curr_user%}
 					<div class="adminmeta">
-						<a href="?act=delete">删除</a>,
+						<a href="?act=delete" onclick="return confirm('确定要删除吗?');">删除</a>,
 						<a href="?act=edit">修改</a>,
 					</div>
 				{%endif%}
