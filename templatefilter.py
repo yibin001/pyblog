@@ -49,7 +49,7 @@ def html(value):
 		
 	except:
 		rtn = markdown.markdown(value)
-	rtn = re.sub(gist_re,'<script src="\\1"></script>',rtn)
+	#rtn = re.sub(gist_re,'<script src="\\1"></script>',rtn)
 	return rtn
 
 def globalavatar(value,size=36):
