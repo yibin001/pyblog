@@ -18,7 +18,7 @@ import sys
 import re
 
 more_re = re.compile('\[more\]',re.I)
-
+gist_re = re.compile('\[gist\](.+)\[/gist\]',re.I)
 try:
 	import misaka as markdown
 except:
@@ -49,6 +49,7 @@ def html(value):
 		
 	except:
 		rtn = markdown.markdown(value)
+	rtn = re.sub(gist_re,'<script src="\\1"></script>',rtn)
 	return rtn
 
 def globalavatar(value,size=36):
