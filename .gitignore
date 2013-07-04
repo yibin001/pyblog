@@ -3,8 +3,7 @@
 *.pyc
 test.py
 settings.py
-*.svn
+.svn
 entries
 text-base*
 all-*
-
