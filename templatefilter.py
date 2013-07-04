@@ -49,7 +49,11 @@ def html(value):
 		
 	except:
 		rtn = markdown.markdown(value)
+<<<<<<< HEAD
 	rtn = re.sub(gist_re,'<script src="\\1"></script>',rtn)
+=======
+	#rtn = re.sub(gist_re,'<script src="\\1"></script>',rtn)
+>>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
 	return rtn
 
 def globalavatar(value,size=36):

@@ -6,5 +6,9 @@ settings.py
 *.svn
 entries
 text-base*
+<<<<<<< HEAD
 all-*
 
+=======
+all-*
+>>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a

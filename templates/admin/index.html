@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head> 
@@ -21,4 +22,29 @@
         <frame name="mainframe" scrolling="auto" id="mainframe" src="about:blank"> 
     </frameset> 
 </frameset><noframes></noframes> 
+=======
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>管理中心</title>
+<link rel="stylesheet" type="text/css" href="{{config.static_domain}}/static/css/style.css" /> 
+	<script type="text/javascript" src="{{config.static_domain}}/static/js/jquery.js"></script>
+<script type="text/javascript">
+    var mainUrl = '{{url}}';
+    $(document).ready(function () {
+        if (mainUrl) {
+            $('#mainframe').attr('src', mainUrl);
+        }
+    });
+</script>
+</head> 
+<frameset rows="32,*" frameborder="no" border="0" framespacing="0"> 
+ <frame name="topframe" scrolling="no" noresize src="/admin/top/" border="0" > 
+    <frameset name="main" cols="200,*" frameborder="no" framespacing="0" > 
+        <frame name="leftframe" scrolling="yes"  src="/admin/left/"> 
+        <frame name="mainframe" scrolling="auto" id="mainframe" src="about:blank"> 
+    </frameset> 
+</frameset><noframes></noframes> 
+>>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
 </html>
