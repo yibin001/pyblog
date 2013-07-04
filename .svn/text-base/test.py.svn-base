@@ -1,0 +1,13 @@
+# -*- coding: UTF-8 -*-
+
+import markdown2
+if __name__ =='__main__':
+    print markdown2.markdown("""
+    def test():
+        print 'a'
+`
+function test(){
+    alert('');
+}
+`
+    """) 
