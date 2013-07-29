@@ -122,12 +122,9 @@ class PostComment(BaseHandler):
                 curr_user_info = self.get_current_user_info
                 username = curr_user_info.username
                 email    = curr_user_info.email
-            if not isemail(email):
-                self.flash(u'email地址不正确')
-                self.redirect(post.url)
-                return
-            if username =='' or content =='':
-                self.flash(u'错误,称呼与内容是必填项')
+            
+            if username =='' or content =='' or not isemail(email) :
+                self.flash(u'错误:称呼、电子邮件地址与内容是必填项')
                 self.redirect(post.url)
                 return
             username = username[:20]

@@ -149,7 +149,7 @@ class EditPost(BaseHandler):
         else:
             rtn = Post.edit_post(id=id,title = title,content = content,status = status,commentstatus = commentstatus,password = password,tag = tag,category = category,posttype=posttype,alias=alias)
             if rtn:
-                self.flash(u'修改成功')
+                self.flash(u'修改成功,<a href="/post/%s/" target="_blank">马上查看</a>' % id)
             else:
                 self.flash(u'修改失败')
             self.redirect('/admin/post/edit/'+id+'/')

@@ -1,3 +1,4 @@
+
 <div class="post-{{post.id}} post type-post status-publish format-standard hentry category-develop tag-cakephp">
                 <span class="icon icon_aside" title="日志"></span>
                 <header id="post_header">
@@ -5,23 +6,23 @@
                     <time class="time" datetime="{{post.created|int2time}}">{{post.created|int2time}}</time>
                 </header>
                 <article id="post_content">
-					{%if valid%}
+                    {%if valid%}
                         {%if post.password%}
                         <div class="notice">
                             这是一篇受保护的日志，您已通过验证。<a href="?act=clear">清除验证信息</a>
                         </div>
                         {%endif%}
                         {{post.content|html}}
-					{%else%}
-						{% include "_password.html"%}
-					{%endif%}
+                    {%else%}
+                        {% include "_password.html"%}
+                    {%endif%}
                 </article>
-				{%if curr_user%}
-					<div class="adminmeta">
-						<a href="?act=delete">删除</a>,
-						<a href="?act=edit">修改</a>,
-					</div>
-				{%endif%}
+                {%if curr_user%}
+                    <div class="adminmeta">
+                        <a href="?act=delete" onclick="return confirm('确定要删除该日志吗?');">删除</a>,
+                        <a href="?act=edit">修改</a>,
+                    </div>
+                {%endif%}
                 <footer id="post_footer">
                     <span class="icon icon_tag" title="标签"></span>
                     {%for tag in post.tag%}<a href="/tag/{{tag.tag}}/" rel="tag">{{tag.tag}}</a> {%if not loop.last%},{%endif%} {%endfor%}
@@ -29,3 +30,4 @@
                 <div class="adbanner"></div>
             </div>
 {% include "_comment.html" %}
+
