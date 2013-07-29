@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="comments">
                 <span class="icon icon_comment" title="评论"></span>
                 {%if commentcount > 0%}
@@ -115,4 +116,123 @@ $(function(){
 })
 
 
+=======
+<div id="comments">
+                <span class="icon icon_comment" title="评论"></span>
+                {%if commentcount > 0%}
+                <h4>{{commentcount}} 条评论</h4>
+                {%else%}
+                <h4>暂时还没有评论</h4>
+                {%endif%}
+                <ol class="comment_list">
+                    {%for p in comments%}
+                    <li class="comment even thread-even depth-1" id="comment-{{p.id}}">
+                        <div id="div-comment-{{p.id}}" class="comment-body">
+                            <div class="comment-author vcard">
+                                <img alt='' src='{{p.email|avatar}}' class='avatar avatar-36 photo' height='36' width='36' />
+                                <cite class="fn">{{p.username|e}}</cite><span class="says"></span>
+                            </div>
+
+                            <div class="comment-meta commentmetadata">
+                                <a href="/post/{{post.id}}#comment-{{p.id}}">{{p.created|int2time}}</a></a>
+                            </div>
+                            <p>{{p.content|e|html}}</p>
+                            <div class="reply">
+                                {%if curr_user%}
+                                    <a href="http://www.ip138.com/ips138.asp?ip={{p.ip}}" target="_blank">{{p.ip}}({{p.location}})</a>
+                                    &nbsp;
+                                    {%if p.status == 1%}<em>己删除</em>{%endif%}
+                                    &nbsp;
+                                    {%if p.isspam == 1%}<em>已标记为垃圾评论</em>{%endif%}    
+                                {%endif%}
+                                <a class='comment-reply-link' href='#respond' data-id="{{p.id}}">回复</a>
+                                {%if curr_user%}
+                                    <a class='comment-delete-link' href='#1' data-id="{{p.id}}">删除</a>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </li>
+                    {%endfor%}
+                </ol>
+
+                <div id="respond">
+                     {% set messages = handler.get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="notice">
+                    {% for category, msg in messages %}
+                    <span class="flash-{{ category }}">{{ msg }}</span>
+                    {% endfor %}
+                    </div>
+                    {% endif %}
+                    {%if config.enablecomment|int == 1 and post.commentstatus==0 %}
+                    <h3 id="reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="/archives/6869#respond" style="display: none;">取消回复</a></small></h3>
+
+                   
+
+                    <form action="/postcomment/{{post.id}}/" method="post" id="commentform">
+
+                        {%if curr_user%}
+                        <p class="logged-in-as">以 {{curr_user}} 的身份登录。<a href="/logout/" title="登出此帐户">退出？</a></p>
+                        {%else%}
+
+                        <p class="comment-notes">电子邮件地址不会被公开。 必填项已用 <span class="required">*</span> 标注</p>
+                        <p class="comment-form-author">
+                            <label for="author">姓名 <span class="required">*</span></label>
+                            <input id="author" name="username" type="text" placeholder="姓名/称呼"  maxlength="20" size="30" aria-required='true' value="{{comment_user.username|e}}" /></p>
+                        <p class="comment-form-email">
+                            <label for="email">电子邮件 <span class="required">*</span></label>
+                            <input id="email" name="email" type="text" maxlength="50"  size="30" aria-required='true' placeholder="您的电子邮件"  value="{{comment_user.email|e}}" /></p>
+
+                        {%endif%}
+                        <p class="comment-form-comment">
+                            <label for="comment">评论</label><textarea id="comment" name="comment" placeholder="请输入评论内容" cols="45" rows="8" aria-required="true"></textarea></p>
+                        <p class="form-allowed-tags">支持<a href="http://wowubuntu.com/markdown" target="_blank">Markdown语法</a>(最长512个字符)。</p>
+                        <p class="form-submit">
+                            <input name="submit" type="submit" id="submit" value="发表评论" />
+                        
+                            <input type='hidden' name='parentid' id='comment_parent' value='0' />
+                            
+                        </p>
+                        
+                    </form>
+                    {%else%}
+                      抱歉，评论已关闭。
+                    {%endif%}
+                </div>
+            </div>
+<script type="text/javascript">
+$(function(){
+    $('a.comment-reply-link').click(function(){
+        var username = $('#div-comment-'+$(this).attr('data-id')).find('cite').text();
+        
+        $('#comment').val($('#comment').val()+"\r\n@"+username);    
+    });
+    {%if curr_user%}
+        $('a.comment-delete-link').click(function(){
+            if(confirm('确定要删除吗？'))
+            {
+                var id = $(this).attr('data-id');
+                $.getJSON('?act=del_comment&cid='+id,function(data){
+                    if(data.code==0){
+                        $('#comment-'+id).fadeOut(400,function(){
+                            $(this).remove();
+                            var _count = $('ol.comment_list li').length;
+                            if (_count>0)
+                            {
+                                $('ol.comment_list').prev().html(_count+' 条评论');
+                            }
+                            else{
+                                $('ol.comment_list').prev().html('暂时还没有评论');
+                            }
+                        });
+
+                    }
+                });
+            }
+    });
+    {%endif%}
+})
+
+
+>>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
 </script>

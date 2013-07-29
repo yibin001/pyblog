@@ -17,12 +17,21 @@
                         {% include "_password.html"%}
                     {%endif%}
                 </article>
+<<<<<<< HEAD
                 {%if curr_user%}
                     <div class="adminmeta">
                         <a href="?act=delete" onclick="return confirm('确定要删除该日志吗?');">删除</a>,
                         <a href="?act=edit">修改</a>,
                     </div>
                 {%endif%}
+=======
+				{%if curr_user%}
+					<div class="adminmeta">
+						<a href="?act=delete" onclick="return confirm('确定要删除该日志吗?');">删除</a>,
+						<a href="?act=edit">修改</a>,
+					</div>
+				{%endif%}
+>>>>>>> edd5d2a07cb82811f15956831d3ab6a1552e3c9b
                 <footer id="post_footer">
                     <span class="icon icon_tag" title="标签"></span>
                     {%for tag in post.tag%}<a href="/tag/{{tag.tag}}/" rel="tag">{{tag.tag}}</a> {%if not loop.last%},{%endif%} {%endfor%}

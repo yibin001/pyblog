@@ -16,4 +16,3 @@ class FlashMessage(object):
         messages = self.messages()
         self.clear_cookie(self._cookie_name)
         return messages
-

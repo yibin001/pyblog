@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="recent-posts-3" class="widget widget_recent_entries">
                 <h2>近期文章</h2>
                 <ul>
@@ -38,4 +39,46 @@
                 
                 </ul>
             </div>
+=======
+<div id="recent-posts-3" class="widget widget_recent_entries">
+                <h2>近期文章</h2>
+                <ul>
+
+				{%for post in recent%}
+                    <li>
+                        <a href="/post/{{post.id}}" title="{{post.title|e}}">{{post.title}}</a>
+                    </li>
+				{%endfor%}
+                </ul>
+            </div>
+			
+
+			<div id="tag-posts" class="widget widget_recent_entries">
+                <h2>热门Tag</h2>
+                <ul>
+
+				{%for tag in hot_tag%}
+                    <li>
+                        <a href="/tag/{{tag.tag}}/" title="{{tag.tag|e}}">{{tag.tag}}({{tag.postcount}})</a>
+                    </li>
+				{%endfor%}
+                </ul>
+            </div>
+            {%if curr_user%}
+                <div id="tag-posts" class="widget widget_recent_entries">
+                <h2>管理</h2>
+                <ul>
+                    <li>
+                        <a href="/admin/" title="">管理后台</a>
+                    </li>
+                    <li>
+                        <a href="/admin/?url=/admin/post/add/" title="添加">添加文章</a>
+                    </li>
+                     <li>
+                        <a href="/logout/" title="退出">退出</a>
+                    </li>
+                
+                </ul>
+            </div>
+>>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
             {%endif%}

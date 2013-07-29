@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "_admin_base.html" %}
 {%block body%}
 <form action="" method="POST">
@@ -137,4 +138,145 @@ function uploadCallBack(data){
 }
 
 </script>
+=======
+{% extends "_admin_base.html" %}
+{%block body%}
+<form action="" method="POST">
+
+
+
+
+        <table class="lst" style="width:80%">
+            <tr>
+                <td>Id:</td><td>自动生成</td>
+            </tr>
+            <tr>
+                <td>标题:</td><td><input type="text" class="text" name="title" placeholder="标题" /></td>
+            </tr>
+            <tr>
+                <td>分类:</td><td><input type="text" class="text" name="input_category" placeholder="多个用,分开" />
+
+				{%for c in category%}
+				<label>
+		<input type="checkbox" name="category" value="{{c.category}}" />{{c.category}}
+		</label>
+	{%endfor%}
+	</td>
+            </tr>
+            <tr>
+                <td>标签:</td><td>
+<input type="text" name="input_tag" placeholder="多个用,分开" class="text"/>
+{%for tag in tags%}
+		<label>
+		<input type="checkbox" name="tag" value="{{tag.tag}}" />{{tag.tag}}
+		</label>
+	{%endfor%}
+</td>
+            </tr>
+            <tr>
+                <td>状态:</td><td>
+					<select name="status">
+					<option value="0">发布</option>
+					<option value="1">草稿</option>
+					</select>
+				</td>
+            </tr>
+            <tr>
+                <td>评论:</td>
+                <td>
+						<input type="radio" name="commentstatus" value="0" checked="checked"/>允许评论 
+						<input type="radio" name="commentstatus" value="1" />关闭评论 
+                </td>
+            </tr>
+
+<tr>
+                <td>密码:</td>
+                <td>
+							<input type="text" class="text" name="password" placeholder="访问密码" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>别名:</td>
+                <td>
+                            <input type="text" class="text" name="alias" placeholder="数字下画线和字母" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>类型:</td>
+                <td>
+                        <select name="posttype">
+                            <option value="0">日志</option>
+                            <option value="1">页面</option>
+                        </select>
+                </td>
+            </tr>
+
+ <tr>
+                 <td>
+                    内容(MarkDown):
+                </td>
+                <td>
+				  <!--
+                    <div id="epiceditor" style="height:350px;"></div>
+                -->
+                    <textarea name="content" cols="90" rows="30" id="blogcontent" ></textarea>
+                <div id="attachments">
+                    <ul>
+
+                    </ul>
+                    <div class="clear" />
+                </div>
+               
+                </td>
+            </tr>
+
+            <tr>
+                <td>附件:</td><td><button id="uploadfile" class="button">上传</button></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                   <input type="submit"  value="提交" class="button"/>
+                </td>
+            </tr>
+        </table>
+
+
+
+</form>
+
+<script type="text/javascript">
+/*
+opts.clientSideStorage = false;
+var editor = new EpicEditor(opts).load();
+$(function(){
+	
+	$('form').submit(function(){
+        
+		$('#content').val((editor.getElement('editor').body.innerText));
+		return true;
+	});
+});
+*/
+$(function(){
+    $("body").markdown({
+        'textarea' : $( "#blogcontent" )
+    });
+});
+$("#uploadfile").upload("/admin/upload/?callback=test", "filetoupload", function () {});
+
+function uploadCallBack(data){
+    if(data.isimage)
+    {
+        $('#attachments ul').append('<li><img data="'+data.url+'" src="'+data.url+'" data-isimage="1" /></li>');
+    }
+    else
+    {
+        $('#attachments ul').append('<li><img data="'+data.url+'" data-isimage="0" src="http://filestore.b0.upaiyun.com/yibin.im/static/images/attachment.png" /></li>');   
+    }
+}
+
+</script>
+>>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
 {%endblock%}

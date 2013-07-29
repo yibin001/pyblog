@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,4 +19,26 @@
 </script>
 </body>
 
+=======
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{{config.static_domain}}/static/css/main.css" /></head> 
+<body id="topBody">
+<div id="wrap">
+  <div id="container">
+    <div class="topNavigation">
+        您好 {{curr_user}},
+        <a href="/" target="_blank">站点首页</a> | <a href="#1" onclick="javascript:logout();" >安全退出</a>    </div>
+    <div id="loginedInfo"><em>当前时间:{{time}},您的IP:{{request.remote_ip}}</em></div>
+  </div>
+</div>
+<script type="text/javascript">
+    function logout() {
+        window.parent.location = '/logout/';
+    }
+</script>
+</body>
+
+>>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
 </html>
