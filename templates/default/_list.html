@@ -8,7 +8,11 @@
 		{%if post.password%}
 			这是一篇受保护的文章，需要输入密码才能访问。
 		{%else%}
-	    {{post.summary|html}}
+		  {%if post.hasmore%}
+	    	{{post.summary|html}}
+	      {%else%}
+	         {{post.content|html}}
+	      {%endif%}
 		{%endif%}
 	    <p><a href="{{post.url}}" class="more-link">阅读详细 &raquo;</a></p>
 	</section>

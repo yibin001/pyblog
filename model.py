@@ -142,7 +142,9 @@ class Post(object):
         for x in rtn[1]:
             self._decrationPost(x)
             more = x.content.find('[more]')
-            if more:
+            x.hasmore = False
+            if more > -1:
+                x.hasmore = True
                 x.summary = x.content[:more]
             else:
                 x.summary = x.content
