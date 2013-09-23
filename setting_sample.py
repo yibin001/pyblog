@@ -26,11 +26,11 @@ ENABLE_PAGE_CACHE = True
 
 
 # sae storage 名
-STORAGE_DOMAIN_NAME = 'YOUR_STORAGE_BUCKET_NAME'        
+STORAGE_DOMAIN_NAME = '<your_sae_storage_domain_name>'        
 
 
 #静态资源域,结尾不要加/，比如：http://xxxx.com/static
-STATIC_DOMAIN =  ''    
+STATIC_DOMAIN =  '<your_static_file_domain>'    
 
 blogconfig = {
     'title':u'a simple blog',
@@ -44,10 +44,10 @@ blogconfig = {
 
 #SMTP配置，用于找回密码
 
-SMTP_HOST = 'SMTP_HOST'
+SMTP_HOST = '<SMTP_HOST>'
 SMTP_PORT = 0
-SMTP_USER = 'SMTP_USER'
-SMTP_PASS = 'SMTP_PASS'
+SMTP_USER = '<SMTP_USER>'
+SMTP_PASS = '<SMTP_PASS>'
 SMTP_ISSSL = False
 
 # smtp配置结束
@@ -55,4 +55,4 @@ SMTP_ISSSL = False
 
 # Akismet_APP_KEY设置，用于鉴定垃圾评论
 # 可以在这里注册，并获取自己的appkey https://akismet.com/plans/
-Akismet_APP_KEY = 'YOUR Akismet_APP_KEY'
+Akismet_APP_KEY = '<your_Akismet_APP_KEY>'
