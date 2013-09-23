@@ -1,4 +1,3 @@
-
 //** Accordion Content script: By Dynamic Drive, at http://www.dynamicdrive.com
 //** Created: Jan 7th, 08'
 
@@ -188,5 +187,4 @@ var ddaccordion={
 		})
 	})
 	}
-
 }

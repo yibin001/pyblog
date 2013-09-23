@@ -1,4 +1,3 @@
-
 jQuery.fn.extend({
     upload: function (url, inputName, callback) {
         var $o = $(this);
@@ -32,5 +31,4 @@ jQuery.fn.extend({
             });
         });
     }
-
 });

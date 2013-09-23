@@ -1,4 +1,3 @@
-
 #tooltip {
 	position: absolute;
 	z-index: 3000;
@@ -8,4 +7,3 @@
 	opacity: 0.85;
 }
 #tooltip h3, #tooltip div { margin: 0; font-weight:normal; font-size:12px; }
-

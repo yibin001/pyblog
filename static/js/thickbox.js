@@ -1,4 +1,3 @@
-
 ﻿/*
  * Thickbox 3 - One Box To Rule Them All.
  * By Cody Lindley (http://www.codylindley.com)

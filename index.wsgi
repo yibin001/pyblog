@@ -13,10 +13,10 @@ settings = {
     "xsrf_cookies": False
 }
 
-#tornado.web.ErrorHandler = PageNotFoundHandler
+tornado.web.ErrorHandler = PageNotFoundHandler
 
 
-error_url =[] # [(r".*",PageNotFoundHandler)]
+error_url =[(r".*",PageNotFoundHandler)]
 app = tornado.wsgi.WSGIApplication(blogurls+adminurls+taskurls+installurls+error_url, **settings)
 
 application = sae.create_wsgi_app(app)

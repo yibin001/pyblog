@@ -1,4 +1,3 @@
-
 /*!
  * jQuery UI CSS Framework 1.8.21
  *
@@ -563,5 +562,4 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
  * http://docs.jquery.com/UI/Progressbar#theming
  */
 .ui-progressbar { height:2em; text-align: left; overflow: hidden; }
-
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }

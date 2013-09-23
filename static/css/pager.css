@@ -1,4 +1,4 @@
-
+﻿
 .pagination{
 padding: 2px;
 }
@@ -51,5 +51,4 @@ color: #929292;
 * html .pagination li.currentpage, * html .pagination li.disablepage{ /*IE 6 and below. Adjust non linked LIs slightly to account for bugs*/
 margin-right: 5px;
 padding-right: 0;
-
 }

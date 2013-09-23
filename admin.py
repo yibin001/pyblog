@@ -30,10 +30,13 @@ class Upload(BaseHandler):
     def get(self):
         self.write(render_admin.upload(self.datamap))
     def post(self):
+        common.error_log('start upload.....')
         self.set_header('Content-Type','text/html')
         rspd = {'status': 201, 'msg':'ok'}
         callback = self.get_argument('callback','callback');
+        common.error_log('callback is '+callback)
         filetoupload = self.request.files['filetoupload']
+        common.error_log('crash')
         isimage = 0
         if filetoupload:
             myfile = filetoupload[0]

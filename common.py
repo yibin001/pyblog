@@ -207,15 +207,18 @@ def cache_page(key="",expire_time=3600):
                 return
             request=args[0].request
             skey=key+ request.path
-
+            error_log('mc get key:'+skey)
             html= cache.get(skey)
+
             if html:
+                error_log('mc get key '+skey+' OK,length is '+str(len(html)))
                 cachetime,html = html
 
                 request.set_header('Cache-Control', 'public,max-age=' % (expire_time))
                 request.set_header('Expires','%s' % (time.strftime('%a, %d %b %Y %H:%M:%S GMT',time.gmtime(tiem.time()+expire_time))))
                 request.write(html)
             else:
+                error_log('mc get key '+skey+' is not found')
                 result = method(*args, **kwargs)
                 #result = (int(time.time()),result)
                 cache.set(skey,result,expire_time)
