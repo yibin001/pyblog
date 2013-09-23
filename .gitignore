@@ -2,8 +2,9 @@
 *.pot
 *.pyc
 test.py
-settings.py
+setting*.py
 .svn
 entries
 text-base*
 all-*
+config.yaml

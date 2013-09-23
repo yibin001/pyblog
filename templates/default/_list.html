@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <article id="post_list">
 {%for post in data%}
 	<section class="post-{{post.id}} post type-post status-publish format-standard hentry category-develop tag-cakephp">
@@ -24,31 +24,5 @@
 	<a href="/{{pageurl}}/{{page+1}}" title="下页">&gt;</a>
 	{%endif%}
 </nav>
-=======
-<article id="post_list">
-{%for post in data%}
-	<section class="post-{{post.id}} post type-post status-publish format-standard hentry category-develop tag-cakephp">
-	    <span class="icon icon_aside" title="日志"></span>
-	    <h2><a href="{{post.url}}">{{post.title}}</a></h2>
-	    <time class="time" datetime="{{post.created|formattime('%Y-%m-%d')}}">{{post.created|formattime('%Y-%m-%d')}}</time>
-		{%if post.password%}
-			这是一篇受保护的文章，需要输入密码才能访问。
-		{%else%}
-	    {{post.summary|html}}
-		{%endif%}
-	    <p><a href="{{post.url}}" class="more-link">阅读详细 &raquo;</a></p>
-	</section>
-{%endfor%}
-</article>
-{%if pagecount > 1%}
-<nav class="navigation">
-	<span class="icon icon_page" title="分页"></span>
-	{%if page>1%}
-		<a href="/{{pageurl}}/{{page-1}}" title="上页">&lt;</a>
-	{%endif%}
-	{%if page<pagecount%}
-	<a href="/{{pageurl}}/{{page+1}}" title="下页">&gt;</a>
-	{%endif%}
-</nav>
->>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
+
 {%endif%}

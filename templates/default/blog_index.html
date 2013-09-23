@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 {%extends "_base.html"%}
 {%block main%}
 {%if count>0%}
@@ -13,19 +13,3 @@
 {% include '_sidebar.html' %}
 {%endblock%}
 
-=======
-{%extends "_base.html"%}
-{%block main%}
-{%if count>0%}
-{% include '_list.html' %}
-{%else%}
-<div class="nodata">暂时没有{%if key%}找到与 <strong>{{key|e}}</strong> 相关的{%endif%}文章</div>
-{%endif%}
-{%endblock%}
-
-
-{%block sidebar%}
-{% include '_sidebar.html' %}
-{%endblock%}
-
->>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
