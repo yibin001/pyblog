@@ -18,7 +18,7 @@
 
 **Require**
 
-Flask / Jinja / MySQLdb 
+Tornado / Jinja / MySQLdb 
 
 
 
@@ -26,4 +26,4 @@ Flask / Jinja / MySQLdb
 
 Demo:
 
-<http://yibin.im>
+<http://yibinim.sinaapp.com>
