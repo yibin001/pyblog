@@ -148,7 +148,7 @@ def error_log(error_info):
     logging.error(error_info)
 
 
-def cacheData(key_pattern, expire=3600):
+def cacheData(key_pattern, expire=120):
     def deco(f):
         arg_names, varargs, varkw, defaults = inspect.getargspec(f)
         if varargs or varkw:
