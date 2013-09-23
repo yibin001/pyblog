@@ -123,7 +123,7 @@ class PostComment(BaseHandler):
                 username = curr_user_info.username
                 email    = curr_user_info.email
             
-            if username =='' or content == or not isemail(email)'':
+            if username =='' or content == '' or not isemail(email):
                 self.flash(u'错误:称呼、电子邮件与内容是必填项')
                 self.redirect(post.url)
                 return

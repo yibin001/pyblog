@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿
+
     table {
 	border-collapse: collapse;
 	width:99%;
@@ -37,44 +36,4 @@ tr.over td, tr:hover td {
 }
 
 
-=======
-﻿
-    table {
-	border-collapse: collapse;
-	width:99%;
-	font-size: 1.1em;
-	border:solid 1px #3e83c9;
-}
-
-th {
-	background: #3e83c9;
-	color: #fff;
-	text-align: center;
-	border-right: 1px solid #fff;
-	line-height: 20px;
-	padding:3px 0 3px 0;
-  font-weight:bold;
-  height:20px;
-}
-
-td {
-	padding: 6px 11px;
-	border-bottom: 1px solid #95bce2;
-	vertical-align: top;
-}
-
-td * {
-	padding: 6px 11px;
-}
-
-tr.alt td {
-	background: #ecf6fc;
-}
-
-tr.over td, tr:hover td {
-	background: #bcd4ec;
-}
-
-
->>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
 tfoot td,tfoot td * {padding:6px 0 6px 0;}

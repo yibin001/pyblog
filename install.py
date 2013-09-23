@@ -210,4 +210,4 @@ class install(tornado.web.RequestHandler):
 
 
 urls = [
-    (r"/install/?", install),
+    (r"/install/?", install),]

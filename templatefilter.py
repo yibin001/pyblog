@@ -19,9 +19,9 @@ import re
 more_re = re.compile('\[more\]',re.I)
 gist_re = re.compile('\[gist\](.+)\[/gist\]',re.I)
 try:
-	import misaka as markdown
+    import misaka as markdown
 except:
-	import markdown
+    import markdown
 
 facereg = "\[em(\d+)\]"
 
@@ -40,16 +40,17 @@ def mail2avatar(value):
     return 'http://www.gravatar.com/avatar/%s?s=48&d=&r=G' % ( hashlib.md5(value.lower()).hexdigest())
 
 def html(value):
-	value = more_re.sub('',value)
-	rtn = value
+    value = more_re.sub('',value)
+    rtn = value
 
-	try:
-		rtn = markdown.html(value)
-		
-	except:
-		rtn = markdown.markdown(value)
-	rtn = re.sub(gist_re,'<script src="\\1"></script>',rtn)
-	return rtn
+    try:
+        rtn = markdown.html(value)
+        
+    except:
+        rtn = markdown.markdown(value)
+    rtn = re.sub(gist_re,'<script src="\\1"></script>',rtn)
+    return rtn
 
 def globalavatar(value,size=36):
-	return 'http://0.gravatar.com/avatar/%s?s=%s&d=&r=G' % (hashlib.md5(value).hexdigest(),size)
+
+    return 'http://0.gravatar.com/avatar/%s?s=%s&d=&r=G' % (hashlib.md5(value).hexdigest(),size)

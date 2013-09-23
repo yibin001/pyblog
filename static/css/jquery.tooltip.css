@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #tooltip {
 	position: absolute;
 	z-index: 3000;
@@ -8,14 +8,4 @@
 	opacity: 0.85;
 }
 #tooltip h3, #tooltip div { margin: 0; font-weight:normal; font-size:12px; }
-=======
-#tooltip {
-	position: absolute;
-	z-index: 3000;
-	border: 1px solid #111;
-	background-color: #eee;
-	padding: 5px;
-	opacity: 0.85;
-}
-#tooltip h3, #tooltip div { margin: 0; font-weight:normal; font-size:12px; }
->>>>>>> 903cf25d870f2cbcd68c2b4adc2f597bf9c9405a
+
