@@ -249,9 +249,8 @@ class Test(BaseHandler):
     def get(self):
         import pylibmc
         vcache = pylibmc.Client()
-        vcache.add('test','aa',time = 600)
-        v = vcache.get('test')
-        self.write(str(v))
+        vcache.flush_all()
+        self.write('flush_all ok!')
     def post(self):
         self.flash(time.strftime('%H:%M:%S', time.localtime()))
         self.redirect('')
@@ -272,7 +271,7 @@ urls = [
     (r"/postcomment/(\d+)/?", PostComment),
     (r"/forgotpassword/?", ForgotPassword),
     (r"/reset/([0-9a-zA-Z]{32})/?", ResetPassword),
-    (r"/test/",Test),
+    (r"/cacheflush/",Test),
     
     
 ]
