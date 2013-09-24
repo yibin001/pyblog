@@ -19,8 +19,10 @@ class Feed(BaseHandler):
         count,data = Post.get_post(page=1,pagesize=15)
         self.datamap['rss']  = data
         self.set_header('Content-Type', 'application/xml;charset=utf-8') 
-        
-        self.write(render.rss(self.datamap))
+        import common
+        rtn = render.rss(self.datamap)
+        self.write(rtn)
+        return rtn
         
         
 
@@ -45,10 +47,12 @@ class HomePage(BaseHandler):
         self.datamap['page'] = int(page)
         self.datamap['pageurl'] = 'page'
         self.datamap['pagecount'] = int(math.ceil(float(count)/blogconfig['pagesize']))
-        self.write(render.blog_index(self.datamap))
+        rtn = render.blog_index(self.datamap)
+        self.write(rtn)
+        return rtn
 
 class PostPage(BaseHandler):
-    @cache_page(expire_time=120)
+    #@cache_page(expire_time=120)
     def get(self,id):
         post = None
 
@@ -153,7 +157,9 @@ class CategoryPage(BaseHandler):
         self.datamap['pageurl'] = 'category'
         self.datamap['page'] = page
         self.datamap['pagecount'] = int(math.ceil(float(count)/blogconfig['pagesize']))
-        self.write(render.blog_index(self.datamap))
+        rtn = render.blog_index(self.datamap)
+        self.write(rtn)
+        return rtn
 
 class TagPage(BaseHandler):
     @cache_page(expire_time=120)
@@ -168,7 +174,10 @@ class TagPage(BaseHandler):
         self.datamap['pageurl'] = 'tag'
         self.datamap['page'] = page
         self.datamap['pagecount'] = int(math.ceil(float(count)/blogconfig['pagesize']))
-        self.write(render.blog_index(self.datamap))
+        #self.write(render.blog_index(self.datamap))
+        rtn = render.blog_index(self.datamap)
+        self.write(rtn)
+        return rtn
 
 
 class Page(BaseHandler):
@@ -238,8 +247,11 @@ class PageNotFoundHandler(BaseHandler):
 
 class Test(BaseHandler):
     def get(self):
-        
-        self.write(render.test(self.datamap))
+        import pylibmc
+        vcache = pylibmc.Client()
+        vcache.add('test','aa',time = 600)
+        v = vcache.get('test')
+        self.write(str(v))
     def post(self):
         self.flash(time.strftime('%H:%M:%S', time.localtime()))
         self.redirect('')

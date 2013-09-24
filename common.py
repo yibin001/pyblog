@@ -15,6 +15,7 @@ import templatefilter
 try:
     import pylibmc
     cache = pylibmc.Client()
+
 except:
     import memcache
     cache = memcache.Client(['localhost:11211'], debug=True)
@@ -174,7 +175,7 @@ def cacheData(key_pattern, expire=120):
 
             val = cache.get(key)
             if val is None:
-               
+                print '%s is missing...' % key
                 val = f(*a, **kw)
                 if val is None:
                     pass
@@ -182,7 +183,7 @@ def cacheData(key_pattern, expire=120):
                     cache.add(key,val,time = expire)
                    
             else:
-                #print '%s is cached...' % key
+                print '%s is cached...' % key
                 pass                
             return val
         return _
@@ -205,22 +206,25 @@ def cache_page(key="",expire_time=3600):
             if not ENABLE_PAGE_CACHE:
                 method(*args, **kwargs)
                 return
-            request=args[0].request
-            skey=key+ request.path
-            error_log('mc get key:'+skey)
+            
+            
+            #_RequestHandler = args[0]
+            request=args[0] #.request
+            skey=key+ request.request.path
+
             html= cache.get(skey)
 
+            #html = None
             if html:
-                error_log('mc get key '+skey+' OK,length is '+str(len(html)))
+                print skey+' is cached'
                 cachetime,html = html
-
-                request.set_header('Cache-Control', 'public,max-age=' % (expire_time))
-                request.set_header('Expires','%s' % (time.strftime('%a, %d %b %Y %H:%M:%S GMT',time.gmtime(tiem.time()+expire_time))))
+                request.set_header('Cache-Control', 'public,max-age=%d' % (expire_time))
+                request.set_header('Expires','%s' % (time.strftime('%a, %d %b %Y %H:%M:%S GMT',time.gmtime(time.time()+expire_time))))
                 request.write(html)
             else:
-                error_log('mc get key '+skey+' is not found')
+                print skey+' is not cached'
                 result = method(*args, **kwargs)
-                #result = (int(time.time()),result)
+                result = (int(time.time()),result)
                 cache.set(skey,result,expire_time)
         return _wrapper
     return _decorate
@@ -337,6 +341,7 @@ class BaseHandler(tornado.web.RequestHandler,flash_message.FlashMessage):
 
     def finish(self, chunk=None):
         super(BaseHandler, self).finish(chunk)
+    
         try:
             import model
             model.db_master.close()
@@ -346,6 +351,7 @@ class BaseHandler(tornado.web.RequestHandler,flash_message.FlashMessage):
         finally:
             pass
 
+        
     def write_error(self, status_code, **kwargs):
         if status_code == 404:
             self.write(render.error_404(self.datamap))
