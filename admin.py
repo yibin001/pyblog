@@ -15,20 +15,20 @@ if not debug:
 
 
 
-def put_obj2storage(file_name='', data='', expires='365', type=None, encoding=None, domain_name=STORAGE_DOMAIN_NAME):
+def put_obj2storage(file_name='', data='', expires='365', content_type=None, encoding=None, domain_name=STORAGE_DOMAIN_NAME):
     """
     put object to sae storage
     @param file_name:
     @param data:
     @param expires:
-    @param type:
+    @param content_type:
     @param encoding:
     @param domain_name:
     @return:
     """
     file_name = 'attachment/' + file_name
     bucket = sae.storage.Bucket(domain_name)
-    bucket.put_object(file_name, data, content_type=type, content_encoding=encoding, metadata={"expires": "365d"})
+    bucket.put_object(file_name, data, content_type=content_type, content_encoding=encoding, metadata={"expires": "365d"})
     return bucket.generate_url(file_name)
 
 
@@ -67,7 +67,7 @@ class Upload(BaseHandler):
 
             try:
                 attachment_url = put_obj2storage(file_name=new_file_name, data=myfile['body'], expires='365',
-                                                 type=mime_type, encoding=encoding)
+                                                 content_type=mime_type, encoding=encoding)
             except Exception, e:
                 print str(e)
                 attachment_url = ''
@@ -146,7 +146,7 @@ class EditPost(BaseHandler):
         self.datamap['chose_category'] = [x.category for x in post.category]
         self.write(render_admin.editpost(self.datamap))
 
-    def post(self, id):
+    def post(self, postId):
         title = self.get_argument('title', '')
         content = self.get_argument('content', '', strip=False)
         status = self.get_argument('status', 0)
@@ -164,13 +164,13 @@ class EditPost(BaseHandler):
         if title == '' or content == '':
             self.datamap['message'] = u'标题与内容不能为空'
         else:
-            rtn = Post.edit_post(id=id, title=title, content=content, status=status, commentstatus=commentstatus,
+            rtn = Post.edit_post(id=postId, title=title, content=content, status=status, commentstatus=commentstatus,
                                  password=password, tag=tag, category=category, posttype=posttype, alias=alias)
             if rtn:
                 self.flash(u'修改成功')
             else:
                 self.flash(u'修改失败')
-            self.redirect('/admin/post/edit/' + id + '/')
+            self.redirect('/admin/post/edit/' + postId + '/')
 
 
 class AdminAddPost(BaseHandler):
