@@ -8,3 +8,5 @@ entries
 text-base*
 all-*
 config.yaml
+*.idea
+*.idea/*
