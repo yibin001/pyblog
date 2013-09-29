@@ -303,6 +303,12 @@ class Comment(object):
 
 
     def get_comments(self, page=1, pagesize=50):
+        """
+
+        @param page:
+        @param pagesize:
+        @return:
+        """
         rtn = [0, None]
         db_slave._ensure_connected()
         sql = """SELECT p.title, c . * FROM py_comment c LEFT JOIN py_posts p ON c.postid = p.id  ORDER BY c.id DESC LIMIT %s,%s"""
