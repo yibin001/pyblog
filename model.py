@@ -293,7 +293,7 @@ class Comment(object):
         db_slave._ensure_connected()
         sql = "select * from py_comment where postid = %s "
         if not isAdmin:
-            sql += " and `status` = 0 "
+            sql += " and `status` = 0 and `isspam` = 0 "
 
         sql_count = sql.replace('*', 'count(0) as count')
         sql += " order by id asc limit %s,%s "
@@ -341,11 +341,13 @@ INSERT INTO `py_comment` (`postid`, `username`, `email`, `created`, `status`, `c
 
     def delete_comment_by_id(self, cid):
         db_master._ensure_connected()
-        postid = db_master.get("select postid from py_comment where id=%s", cid)['postid']
+        postid = db_master.get("select postid from py_comment where id=%s", cid)
         if postid:
+            postid = postid['postid']
             rowaffect = db_master.execute_rowcount("delete from `py_comment` where id=%s", cid)
             if rowaffect == 1:
-                db_master.execute("update py_posts set commentcount = commentcount - 1 where id=%s", postid)
+                db_master.execute(
+                    "update py_posts set commentcount = commentcount - 1 where id=%s and commentcount > 0 ", postid)
 
 
 Comment = Comment()
