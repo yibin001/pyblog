@@ -138,6 +138,9 @@ class PostComment(BaseHandler):
                 is_spam = spam_check(content, self.request.remote_ip)
             else:
                 is_spam = 0
+            if is_spam:
+                self.flash(u'sorry,your comment is not posted')
+                self.redirect(post.url+'#comments')
             location = get_location_byip(self.request.remote_ip)
             Comment.post_comment(postid=postId, username=username, email=email, content=content, parentid=parentid,
                                  ip=self.request.remote_ip, isspam=is_spam, location=location)
