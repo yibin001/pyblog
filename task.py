@@ -27,36 +27,7 @@ class Sync(tornado.web.RequestHandler):
             self.write('Failed')
 
 
-class Redis(tornado.web.RequestHandler):
-    def get(self):
-        import requests
-
-        try:
-            r = requests.get('http://pass.hujiang.com/signup/monitor/redis.aspx', timeout=4.0)
-            if r.text != '0':
-                self._SMSWarning(r.text)
-        except Exception, e:
-            self._SMSWarning(str(e))
-        self.write('Success')
-
-
-    def _SMSWarning(self, body,sendmail = True):
-        import  urllib
-        body = urllib.urlencode(body)
-        url = 'http://api.smsbao.com/sms?u=yibin&p=4287fcc7a0e75d7d7d9fecab57926849&m=18668035738&c={0}'.format(body)
-        import requests
-        try:
-            r = requests.get(url)
-        except Exception,e:
-            pass
-        import common
-        common.sendmail('yibin.net@qq.com',u'pass redis crash','''
-        pass redis crash< br />
-        response is {0}
-        '''.format(body))
-
 
 urls = [
     (r"/task/?", Sync),
-    (r'/redis/?', Redis),
 ]
