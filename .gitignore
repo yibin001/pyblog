@@ -8,5 +8,6 @@ entries
 text-base*
 all-*
 config.yaml
+task.py
 *.idea
 *.idea/*

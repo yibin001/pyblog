@@ -26,37 +26,46 @@ class Sync(tornado.web.RequestHandler):
         else:
             self.write('Failed')
 
+def SendSMS(body):
+    import urllib
+    import common
+    body = urllib.quote(body)
+    url = 'http://api.smsbao.com/sms?u=yibin&p=4287fcc7a0e75d7d7d9fecab57926849&m=18668035738&c={0}'.format(body)
+    import requests
+    try:
+        r=requests.get(url,timeout=5.0)
+    except Exception,e:
+        common.error_log('send sms error:{0}'.format(e.message))
+
 
 class Redis(tornado.web.RequestHandler):
     def get(self):
         import requests
-
         try:
-            r = requests.get('http://pass.hujiang.com/signup/monitor/redis.aspx', timeout=4.0)
+            r = requests.get('http://pass.hujiang.com/signup/monitor/redis.aspx',timeout = 3.0)
             if r.text != '0':
-                self._SMSWarning(r.text)
-        except Exception, e:
-            self._SMSWarning(str(e))
+                SendSMS(u'Redis Warn：{0}'.format(r.text))
+        except Exception,e:
+            SendSMS(u'Redis error：{0}'.format(e.message))
         self.write('Success')
 
-
-    def _SMSWarning(self, body,sendmail = True):
-        import  urllib
-        body = urllib.urlencode(body)
-        url = 'http://api.smsbao.com/sms?u=yibin&p=4287fcc7a0e75d7d7d9fecab57926849&m=18668035738&c={0}'.format(body)
+class hjapi(tornado.web.RequestHandler):
+    def get(self):
         import requests
+        import json
         try:
-            r = requests.get(url)
+            r = requests.get('http://hjapi.hujiang.com/account/?act=loginverify&sign=ed23da697e5fe014fb8802cf803f4ca979776b4f&appkey=9c0b989a7d2d8c5a952475c0f61e792f&account=jason0723&password=04476680b22c4bb8',timeout = 2.0)
+            val = json.loads(r.text)
+            if int(val['code']) !=0:
+                SendSMS(u'hjapi Warn:{0}'.format(r.text))
         except Exception,e:
-            pass
-        import common
-        common.sendmail('yibin.net@qq.com',u'pass redis crash','''
-        pass redis crash< br />
-        response is {0}
-        '''.format(body))
+            SendSMS(u'hjapi error:'+e.message)
+        self.write('Sussess')
+
 
 
 urls = [
     (r"/task/?", Sync),
-    (r'/redis/?', Redis),
+    (r'/hjapi/?', hjapi),
+    (r'/redis/?',Redis)
 ]
